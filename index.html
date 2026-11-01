@@ -1,0 +1,81 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>楊家老架式太極拳｜四節口令練習</title><style>:root{font-family:system-ui,'Noto Sans TC',sans-serif;color:#24332d;background:#f4f5ef}*{box-sizing:border-box}body{margin:0}header{background:#203d34;color:white;padding:24px max(20px,calc((100vw - 1150px)/2))}h1{margin:0 0 8px;font-size:clamp(24px,4vw,38px)}header p{margin:0;color:#d5e2d9}.wrap{max-width:1150px;margin:auto;padding:22px 16px}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}button,input,select{font:inherit;border:1px solid #cbd4ca;border-radius:10px;padding:10px;background:white;color:#203d34}button{cursor:pointer}button.active,.primary{background:#276b53;color:white;border-color:#276b53}input{flex:1;min-width:180px}.layout{display:grid;grid-template-columns:minmax(260px,1fr) minmax(300px,1.25fr);gap:18px}.panel{background:white;border:1px solid #dce3d9;border-radius:16px;padding:18px}.item{display:block;width:100%;text-align:left;margin:7px 0;line-height:1.5}.item small{display:block;color:#64766b}.item.active small{color:#e1eee6}.step{font-size:clamp(24px,3vw,36px);line-height:1.5;margin:16px 0}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:7px 10px;background:#eaf1ea;border-radius:20px;font-size:14px}.muted{color:#66776d}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.progress{height:9px;background:#e5ece5;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:#3c8a6c}textarea{width:100%;min-height:160px;font:inherit;padding:12px;border-radius:10px;border:1px solid #ccd5cd}footer{margin:25px 0;color:#65766c;font-size:13px}@media(max-width:750px){.layout{grid-template-columns:1fr}.panel{padding:14px}}@media print{header,.tools,.controls,.no-print{display:none}.layout{display:block}.panel{border:0}.item{break-inside:avoid}}</style></head><body><header><h1>楊家老架式太極拳</h1><p>108 式・楊家老架・四節完整口令練習台</p></header><main class="wrap"><div class="tools"><button id="all" class="active">全部</button><button class="section" data-s="1">第一節</button><button class="section" data-s="2">第二節</button><button class="section" data-s="3">第三節</button><button class="section" data-s="4">第四節</button><input id="search" placeholder="搜尋招式或細部口令，例如：攬雀尾、雲手"><button id="print">列印</button></div><div class="layout"><section class="panel"><h2>招式目錄 <span id="count" class="muted"></span></h2><div id="list"></div></section><section class="panel"><div class="muted" id="meta"></div><h2 class="step" id="name"></h2><div id="chips" class="chips"></div><h3>完整口令</h3><p id="full" style="line-height:2;font-size:18px"></p><div class="controls"><button id="prev">上一式</button><button id="next" class="primary">下一式</button><button id="speak">▶ 朗讀</button><button id="stop">停止</button><button id="done">✓ 標記完成</button></div><label>語速 <input id="rate" type="range" min="0.5" max="1.5" step="0.1" value="0.85"><span id="rateLabel">0.85×</span></label><p class="muted">完成進度 <span id="pct"></span></p><div class="progress"><div id="bar"></div></div><p class="muted">口令依照提供的四節原文分段；每段視為一個練習單元，並非重新認定傳統 108 式的招式編號。語音使用裝置內建中文語音。</p></section></div><footer>離線可用・完成紀錄保存在目前瀏覽器。可在原始資料區修訂名稱或分段。</footer></main><script>
+const raw=[
+`進入平立，觀無極，收肘，垂手，提腕，起手，伸指，屈臂，豎掌，伸手，沉手，合手。
+左雲手，右雲手倗，外轉雲合，側上，左斜飛倗，轉腰，雲合，側上，右斜飛攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+內轉，提手上勢，落步，手揮琵琶。
+順轉回身捋，盪手上步靠，內轉合身，十字手，長身，白鶴亮翅。
+順轉捋合，盪手上步，左摟膝拗步掌。
+進身跟步，回落半步，提手上勢，落步，手揮琵琶。
+順轉捋合，盪手上步，左摟膝拗步掌，外轉捋合，盪手直上，右摟膝拗步掌，外轉捋合，盪手直上，左摟膝拗步掌，進身跟步，回落半步，提手上勢，落步，手揮琵琶，順轉捋合，盪手上步，左摟膝拗步掌。
+提掌揚拳，裡摑棰，外轉，直上，撇身棰，外轉陷倗，攔撲直上，搬攔棰。
+扭回轉環，進身雙按坐掌。
+內轉，挪步，翻身，三陽開泰，收併斜出，雙抄十字手。
+內轉，翻身抱虎歸山，拗扭抱，轉環抱，順捋抱，盪手坐正補擠，平坐回身分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊採挪步，進身撩掌。
+外轉翻手，左雲手，跟跨右步，右雲手，併上，穿掌腿，肘底棰。
+順轉盪手，直退，右倒輾猴，順轉盪手，直退，左倒輾猴，順轉盪手，直退，右倒輾猴。
+順轉盪手 雲合，轉步，側上斜飛。
+進身跟步，回落半步，提手上勢，落步，手揮琵琶。
+跟併，合太極。`,
+`進入平立，觀無極，
+外轉，手揮琵琶。
+順轉回身捋，盪手上步靠，內轉合身，十字手，長身，白鶴亮翅。
+順轉捋合，盪手上步，左摟膝拗步掌。進身跟步，回落半步，下琵琶手，落步，合身，海底針。
+翻身，上步，扇捅臂，回身頂心肘，挪步，撇身棰，拗步掌，回身棰。
+漸步陷倗，攔撲直上，搬攔棰。
+外轉雲合，撂捧直上攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+回身轉步，右雲手，挪併左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步。
+雲合吊勾，挪步，進身撩掌，翻手單邊。進身跟步，回落半步，收步，高探馬。
+順轉盪手，斜上，捋合，十字點尖，提腿，右分腳，收懸斜上，捋合，十字點尖，提腿，左分腳。
+收懸，轉腳，十字點尖，提腿，左蹬腳，收懸，落步，左摟膝拗步掌，外轉捋合，盪手直上，右摟膝拗步掌。
+外轉陷倗，攔撲直上，摟膝栽棰，回身頂心肘，挪步撇身棰，拗步掌，回身棰。
+踐步陷倗，攔撲直上，搬攔棰。
+回身坐實，左起腳騰空，右起腳，落步，轉身按。
+內轉，挪步，回身左打虎，內轉，挪步，回身，右打虎。
+收步，十字點尖，提腿，右蹬腳，收懸轉腳，雙掛，蹬腳，落步，雙風貫耳，收懸，上步雙抄提腿 ，右蹬腳，收懸轉腳，落步，雙抄提腿，右蹬腳，踐落陷倗，攔撲直上，搬攔棰。
+扭回轉環，進身雙按坐掌。
+內轉，挪步，翻身，三陽開泰，收併斜出，雙抄十字手。
+跟併，合太極。`,
+`進入平立，觀無極。
+偏襠，收肘，斜出，十字手。
+內轉，翻身抱虎歸山，拗扭抱，轉環抱，順捋抱，盪手坐正補擠，平坐回身分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+內轉雲合，挪步，右野馬分鬃，外轉雲合，直上，左野馬分鬃，外轉雲合，直上，右野馬分鬃，外轉雲合，直上，左野馬分鬃。
+撂捧直上攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+內轉，翻身提手，踐落斜上，右玉女穿梭，內轉翻身，斜上，左玉女穿梭，收步提手，踐落斜上，右玉女穿梭，內轉，翻身，斜上左玉女穿梭。
+內轉抱合，挪步，左斜飛倗，轉腰雲合，側上，右斜飛攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+回身轉步，右雲手，挪併左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步。
+雲合吊勾，挪步，進身撩掌，翻手單邊。
+回身轉步，蛇身下勢，外轉，進身，起步，右金雞獨立 ，併落坐下，起步，左金雞獨立。
+順轉盪手，直退，右倒輾猴，順轉盪手，直退，左倒輾猴，順轉盪手，直退，右倒輾猴。
+順轉盪手 雲合，轉步，側上斜飛。
+進身跟步，回落半步，提手上勢，落步，手揮琵琶。
+跟併，合太極。`,
+`進入平立，觀無極。
+外轉，手揮琵琶。
+順轉回身捋，盪手上步靠，內轉合身，十字手，長身，白鶴亮翅。
+順轉捋合，盪手上步，左摟膝拗步掌。
+進身跟步，回落半步，下琵琶手，落步合身，海底針。
+翻身，上步，扇捅臂，回身頂心肘，挪步，撇身棰，回身，白蛇吐信，拗步掌，回身棰。
+踐步陷倗，攔撲直上，搬攔棰。
+外轉雲合，撂捧直上攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。
+內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+回身轉步，右雲手，挪併左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步，右雲手，跨左步，左雲手，併右步。
+雲合吊勾，側上，進身撩掌，翻手單邊。
+進身跟步，回落半步，收步，高探馬。
+上步，穿掌腿，內轉，翻身，十字腿，單百蓮，踐步陷倗，攔撲直上，搬攔指擋棰。
+外轉雲合，撂捧直上攬雀尾，扭腰纏手，順捋，盪手，轉正，補擠，平坐回身，分提屈臂，進身雙按，坐掌。內轉，翻身雙挒掌，回身雲合，吊勾，挪步，進身撩掌，翻手單邊。
+回身轉步，蛇身下式，外轉，進身直上步，七星。
+直退步，跨虎。
+扭轉穿撲掌，收懸，轉腳，前落轉步，擺蓮一，擺蓮二，彎弓射虎，回身。
+踐步陷倗，攔撲直上，搬攔棰。
+扭回轉環，進身雙按坐掌。
+內轉，挪步，翻身，三陽開泰，併步坐下，雙抄十字手。
+跟併，合太極。`];
+const data=raw.flatMap((r,s)=>r.split('\n').filter(Boolean).map((full,i)=>({id:`${s+1}-${i+1}`,section:s+1,num:i+1,full,parts:full.split(/[，。]/).map(x=>x.trim()).filter(Boolean),name:full.split(/[，。]/).filter(Boolean).slice(-1)[0]})));
+let section=0,selected=data[0],done=new Set(JSON.parse(localStorage.getItem('yang108done')||'[]'));const $=id=>document.getElementById(id);function filtered(){let q=$('search').value.trim();return data.filter(x=>(!section||x.section===section)&&(!q||x.full.includes(q)))}function render(){let arr=filtered();$('list').replaceChildren(...arr.map(x=>{let b=document.createElement('button');b.className='item'+(selected.id===x.id?' active':'');b.innerHTML=`<small>第${x.section}節 · 單元 ${x.num} ${done.has(x.id)?'✓':''}</small>`;b.append(document.createTextNode(x.name));b.onclick=()=>{selected=x;render()};return b}));$('count').textContent=`(${arr.length} 單元)`;$('meta').textContent=`第 ${selected.section} 節 · 練習單元 ${selected.num}`;$('name').textContent=selected.name;$('full').textContent=selected.full;$('chips').replaceChildren(...selected.parts.map(t=>{let e=document.createElement('span');e.className='chip';e.textContent=t;return e}));$('done').textContent=done.has(selected.id)?'✓ 已完成':'✓ 標記完成';$('pct').textContent=`${done.size}/${data.length}`;$('bar').style.width=done.size/data.length*100+'%';document.querySelectorAll('.section').forEach(b=>b.classList.toggle('active',Number(b.dataset.s)===section));$('all').classList.toggle('active',!section)}function navigate(d){let a=filtered(),i=a.findIndex(x=>x.id===selected.id);if(a.length){selected=a[Math.max(0,Math.min(a.length-1,i+d))]||a[0];render()}}$('all').onclick=()=>{section=0;render()};document.querySelectorAll('.section').forEach(b=>b.onclick=()=>{section=+b.dataset.s;selected=filtered()[0]||selected;render()});$('search').oninput=()=>{let a=filtered();if(a.length&&!a.includes(selected))selected=a[0];render()};$('prev').onclick=()=>navigate(-1);$('next').onclick=()=>navigate(1);$('done').onclick=()=>{done.has(selected.id)?done.delete(selected.id):done.add(selected.id);localStorage.setItem('yang108done',JSON.stringify([...done]));render()};$('rate').oninput=()=>{$('rateLabel').textContent=$('rate').value+'×'};$('speak').onclick=()=>{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(selected.full);u.lang='zh-TW';u.rate=+$('rate').value;speechSynthesis.speak(u)};$('stop').onclick=()=>speechSynthesis.cancel();$('print').onclick=()=>window.print();render();
+</script></body></html>
